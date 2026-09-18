@@ -378,6 +378,62 @@
   .tile.featured { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
   .tile.featured .tile-tag { background: color-mix(in srgb, var(--gold) 16%, transparent); }
 
+  /* --- secondary "quick links" section: documents/spreadsheets, deliberately
+     plainer than the platform tiles above (a flat list, not a glowing card)
+     so the page still reads platforms-first, documents-second --- */
+  .quicklinks {
+    margin-top: 40px;
+  }
+  .quicklinks h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0 0 12px;
+    text-align: center;
+  }
+  .quicklinks-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .quicklink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: border-color .2s ease, transform .2s ease, background-color .2s ease;
+  }
+  .quicklink:hover {
+    border-color: color-mix(in srgb, var(--navy) 45%, var(--line));
+    background: var(--panel-soft);
+    transform: translateX(3px);
+  }
+  .quicklink-icon {
+    width: 30px; height: 30px;
+    flex: none;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--navy);
+    background: color-mix(in srgb, var(--navy) 12%, transparent);
+    border-radius: 8px;
+  }
+  .quicklink-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .quicklink span.label {
+    font-size: 13px;
+    font-weight: 500;
+    flex: 1;
+  }
+  .quicklink svg.arrow { width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; flex: none; }
+
   .corporate-links {
     display: flex;
     flex-wrap: wrap;
@@ -520,6 +576,32 @@
         <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
+
+    <section class="quicklinks" aria-label="Perencanaan dan Evaluasi">
+      <h2>Perencanaan &amp; Evaluasi</h2>
+      <div class="quicklinks-list">
+        <a class="quicklink" href="https://drive.google.com/drive/folders/1iKHez4wsKZ9RGW6VmGeUh-wZMpMWRaON" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">Link PPT Gangguan UIP3B Kal</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1X-Zw5fqcUOxrLQXA8M09hVjCNr6jSE5ZOS1jj0Uo1oc/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Link Pengisian Data Gangguan TKS</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1UGTFchl2aT6i5aVZiGBiIiTqUwIKj8gPQ208DDlfJNk/edit" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Database Aset General UPT Palangkaraya</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1cs5fQftY8AfQspxZEsNtakIjKT_jh9uUvm5ACkBJGvM/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Database Aset MTU UPT Palangkaraya</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </section>
 
     <nav class="corporate-links" aria-label="Sistem korporat PLN">
       <a href="https://webmail.pln.co.id/" target="_blank" rel="noopener">Web Mail</a>
