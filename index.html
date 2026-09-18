@@ -106,8 +106,8 @@
     .tile:nth-child(4) { animation-delay: .40s; }
     .tile:nth-child(5) { animation-delay: .46s; }
     .tile:nth-child(6) { animation-delay: .52s; }
-    .tile:nth-child(7) { animation-delay: .58s; }
-    .tile:nth-child(8) { animation-delay: .64s; }
+    .subgrid .tile:nth-child(1) { animation-delay: .58s; }
+    .subgrid .tile:nth-child(2) { animation-delay: .64s; }
   }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -267,7 +267,7 @@
     background: linear-gradient(180deg, var(--panel), var(--panel-soft));
     border: 1px solid var(--line);
     border-top: none;
-    padding: 24px 22px 20px;
+    padding: 24px 22px 36px;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
     transition: transform .28s cubic-bezier(.2,.7,.2,1), border-color .28s ease, box-shadow .28s ease;
   }
@@ -303,6 +303,38 @@
     outline: 2px solid var(--accent, var(--navy));
     outline-offset: 3px;
   }
+
+  /* corner brackets — the two corners the clip-path doesn't already cut,
+     a quiet HUD/targeting-frame touch that stays out of the way until hover */
+  .tile-bracket {
+    position: absolute;
+    width: 13px; height: 13px;
+    border-color: var(--accent, var(--navy));
+    opacity: .5;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+  .tile-bracket.tl { top: 9px; left: 9px; border-top: 2px solid; border-left: 2px solid; }
+  .tile-bracket.br { bottom: 9px; right: 9px; border-bottom: 2px solid; border-right: 2px solid; }
+  .tile:hover .tile-bracket { opacity: 1; }
+
+  /* replaces the old always-visible "Buka Dashboard" row — the whole card
+     is already the link, so this is just a quiet on-hover affordance */
+  .tile-open {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid color-mix(in srgb, var(--accent, var(--navy)) 45%, transparent);
+    background: var(--panel);
+    color: var(--accent, var(--navy));
+    opacity: 0;
+    transform: translate(4px, 4px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .tile:hover .tile-open { opacity: 1; transform: translate(0, 0); }
+  .tile-open svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
 
   .tile--gold { --accent: var(--gold); }
   .tile--red { --accent: var(--red); }
@@ -354,29 +386,34 @@
     color: var(--text);
   }
   .tile p {
-    margin: 0 0 20px;
+    margin: 0;
     font-size: 12.5px;
     line-height: 1.55;
     color: var(--muted);
     flex: 1;
   }
-  .tile-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text);
-    padding-top: 12px;
-    border-top: 1px dashed var(--line);
-  }
-  .tile-cta svg { width: 13px; height: 13px; stroke: var(--accent, var(--navy)); fill: none; stroke-width: 2; transition: transform .25s ease; }
-  .tile:hover .tile-cta svg { transform: translateX(4px); }
 
   .tile.featured { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
   .tile.featured .tile-tag { background: color-mix(in srgb, var(--gold) 16%, transparent); }
+
+  /* --- secondary platform grid: regional/UIP3B-wide portals, kept visually
+     apart from the 6 tiles UPT Palangkaraya operates itself --- */
+  .subheading {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 40px 0 16px;
+  }
+  .subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
   /* --- secondary "quick links" section: documents/spreadsheets, tucked
      behind a collapsed <details> disclosure so the page doesn't read as
@@ -519,83 +556,94 @@
 
     <div class="grid">
       <a class="tile featured tile--gold" href="https://performance-center-upt-palangkaraya.vercel.app" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2 3 14h7l-1 8 11-13h-7l1-7z"/></svg></div>
           <span class="tile-tag">Utama</span>
         </div>
         <h3>Performance Center</h3>
         <p>Kinerja UPT &amp; ULTG, ABO, 4DX, Common Enemy, dan AHI dalam satu dashboard.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--red" href="https://hotspot-watch.uptpky.workers.dev/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 3c1.2 3.2-1.8 4.4-1.8 7.6a3.8 3.8 0 0 0 7.6 0c0-1.6-.9-2.6-.9-2.6.4 2-1 3-1 3 .6-3.2-1.9-4.4-1.9-7 0 0-2 1.6-2 4.6"/><path d="M7.5 14.5c0 2.9 2 5.5 4.5 5.5s4.5-2.6 4.5-5.5"/></svg></div>
           <span class="tile-tag">Karhutla</span>
         </div>
         <h3>Hotspot Watch</h3>
         <p>Pemantauan titik panas Karhutla di sekitar tower dan jalur transmisi, dengan klasifikasi tingkat risiko.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--blue" href="https://row-watch.uptpky.workers.dev/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 8h16M4 16h16"/><path d="M4 8 2.5 5M20 8l1.5-3M4 16l-1.5 3M20 16l1.5 3"/></svg></div>
           <span class="tile-tag">ROW</span>
         </div>
         <h3>ROW Watch</h3>
         <p>Progres validasi lapangan dan temuan kritis Right of Way di sepanjang jalur transmisi.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--orange" href="https://lightning-watch.uptpky.workers.dev/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-13h-6l1-7z"/></svg></div>
           <span class="tile-tag">Petir</span>
         </div>
         <h3>Lightning Watch</h3>
         <p>Analisis sambaran petir 2021&ndash;2026, tahanan pentanahan, dan tower paling rawan.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--green" href="https://dashboard-k3l-kam.uptpky.workers.dev/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9.5 12.5l1.8 1.8 3.2-3.6"/></svg></div>
           <span class="tile-tag">K3L</span>
         </div>
         <h3>Dashboard K3L &amp; Keamanan</h3>
         <p>Monitoring kesehatan, keselamatan kerja, lingkungan, dan keamanan di lingkungan UPT Palangkaraya.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--orange" href="https://sigap.uip3bkal.com/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 4v3M12 17v3M4.5 8 7 9.5M17 14.5l2.5 1.5M4.5 16 7 14.5M17 9.5l2.5-1.5"/><circle cx="12" cy="12" r="3.4"/></svg></div>
           <span class="tile-tag">SIGAP</span>
         </div>
         <h3>SIGAP Petir</h3>
         <p>Intelijen operasional sinyal tower &amp; sambaran petir se-Kalimantan, dengan notifikasi WhatsApp bot.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
+    </div>
 
+    <div class="subheading">Jaringan UIP3B Kalimantan</div>
+    <div class="subgrid">
       <a class="tile tile--slate" href="https://lids.tcrmdb.id/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1 .5-7.97A5.5 5.5 0 0 1 18 10.5a3.5 3.5 0 0 1-.5 6.98"/><path d="M10 19l1.5-2.5M14 19l1.5-2.5"/></svg></div>
           <span class="tile-tag">Vaisala</span>
         </div>
         <h3>Auto Vaisala Nusantara</h3>
         <p>Monitoring cuaca, petir, dan risiko kebakaran untuk 139 ruas &amp; 14.068 tower transmisi se-Nusantara.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
       <a class="tile tile--slate" href="https://quickwin.uip3bkal.com/" target="_blank" rel="noopener">
+        <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
           <div class="tile-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg></div>
           <span class="tile-tag">UIP3B</span>
         </div>
         <h3>QuickWin UIP3B</h3>
         <p>Portal induk Command Network UIP3B Kalimantan — akses ke seluruh command center unit se-Kalimantan.</p>
-        <span class="tile-cta">Buka Dashboard <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
 
