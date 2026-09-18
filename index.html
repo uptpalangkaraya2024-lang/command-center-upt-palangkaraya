@@ -409,6 +409,10 @@
     background: color-mix(in srgb, var(--accent, var(--navy)) 20%, transparent);
   }
   .tile-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  /* raster icon (ROW Watch's tower photo, not a recolorable stroke SVG) —
+     same theme-aware invert as the corner tower decoration so it stays
+     legible against both a light and a near-black badge background. */
+  .tile-icon img { width: 22px; height: 22px; object-fit: contain; filter: invert(var(--tower-invert)); }
   .tile-tag {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -627,7 +631,7 @@
       <a class="tile tile--blue" href="https://row-watch.uptpky.workers.dev/" target="_blank" rel="noopener">
         <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
-          <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M9 3 7 21M17 3l-2 18M4 8h16M3 16h16"/></svg></div>
+          <div class="tile-icon"><img src="row-icon.png" alt="" /></div>
           <span class="tile-tag">ROW</span>
         </div>
         <h3>ROW Watch</h3>
