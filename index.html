@@ -378,28 +378,50 @@
   .tile.featured { border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
   .tile.featured .tile-tag { background: color-mix(in srgb, var(--gold) 16%, transparent); }
 
-  /* --- secondary "quick links" section: documents/spreadsheets, deliberately
-     plainer than the platform tiles above (a flat list, not a glowing card)
-     so the page still reads platforms-first, documents-second --- */
+  /* --- secondary "quick links" section: documents/spreadsheets, tucked
+     behind a collapsed <details> disclosure so the page doesn't read as
+     crowded as the 8 platform tiles above — opens on demand instead of
+     always taking up a full row. --- */
   .quicklinks {
-    margin-top: 40px;
+    margin-top: 36px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .quicklinks h2 {
+  .quicklinks summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 20px;
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text);
-    margin: 0 0 12px;
-    text-align: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: border-color .2s ease;
   }
+  .quicklinks summary::-webkit-details-marker { display: none; }
+  .quicklinks summary:hover { border-color: color-mix(in srgb, var(--navy) 45%, var(--line)); }
+  .quicklinks summary .chevron {
+    width: 13px; height: 13px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 2;
+    transition: transform .2s ease;
+  }
+  .quicklinks[open] summary .chevron { transform: rotate(180deg); }
   .quicklinks-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 10px;
-    max-width: 900px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
   }
   .quicklink {
     display: flex;
@@ -577,8 +599,11 @@
       </a>
     </div>
 
-    <section class="quicklinks" aria-label="Perencanaan dan Evaluasi">
-      <h2>Perencanaan &amp; Evaluasi</h2>
+    <details class="quicklinks">
+      <summary>
+        Perencanaan &amp; Evaluasi
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
       <div class="quicklinks-list">
         <a class="quicklink" href="https://drive.google.com/drive/folders/1iKHez4wsKZ9RGW6VmGeUh-wZMpMWRaON" target="_blank" rel="noopener">
           <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
@@ -601,7 +626,7 @@
           <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
       </div>
-    </section>
+    </details>
 
     <nav class="corporate-links" aria-label="Sistem korporat PLN">
       <a href="https://webmail.pln.co.id/" target="_blank" rel="noopener">Web Mail</a>
