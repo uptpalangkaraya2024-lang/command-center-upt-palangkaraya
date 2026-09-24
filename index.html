@@ -410,9 +410,22 @@
   }
   .tile-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   /* raster icon (ROW Watch's tower photo, not a recolorable stroke SVG) —
-     same theme-aware invert as the corner tower decoration so it stays
-     legible against both a light and a near-black badge background. */
-  .tile-icon img { width: 22px; height: 22px; object-fit: contain; filter: invert(var(--tower-invert)); }
+     used purely as a mask so it tints to the tile's own accent color
+     (var(--accent)) exactly like every stroke-based SVG icon does via
+     currentColor, instead of staying a flat black/white silhouette. */
+  .tile-icon .icon-raster {
+    display: block;
+    width: 22px; height: 22px;
+    background-color: var(--accent, var(--navy));
+    -webkit-mask-image: var(--icon-src);
+    mask-image: var(--icon-src);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
   .tile-tag {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -631,7 +644,7 @@
       <a class="tile tile--blue" href="https://row-watch.uptpky.workers.dev/" target="_blank" rel="noopener">
         <span class="tile-bracket tl"></span><span class="tile-bracket br"></span>
         <div class="tile-top">
-          <div class="tile-icon"><img src="row-icon.png" alt="" /></div>
+          <div class="tile-icon"><span class="icon-raster" style="--icon-src:url('row-icon.png')"></span></div>
           <span class="tile-tag">ROW</span>
         </div>
         <h3>ROW Watch</h3>
