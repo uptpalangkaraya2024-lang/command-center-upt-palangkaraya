@@ -206,8 +206,10 @@
     position: fixed;
     top: 16px;
     left: 20px;
+    right: 190px; /* stay clear of the theme toggle in the opposite corner */
     z-index: 5;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 10px;
   }
@@ -497,7 +499,12 @@
      pinned), opening downward without shifting any sibling added next to
      it since each corner item sizes independently in the flex row. --- */
   .quicklinks {
-    width: min(90vw, 300px);
+    width: min(92vw, 340px);
+  }
+  .new-badge {
+    color: var(--gold-strong);
+    font-weight: 700;
+    margin-right: 3px;
   }
   .quicklinks summary {
     display: flex;
@@ -642,6 +649,30 @@
         </a>
       </div>
     </details>
+
+    <details class="quicklinks">
+      <summary>
+        Aplikasi Pendukung &amp; Perpustakaan
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="quicklinks-list">
+        <a class="quicklink" href="https://drive.google.com/drive/folders/1Uj1ylAFWOHAlpq_hT1bm-gAmMBDDtJQR" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">Perpustakaan Transmisi</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://drive.google.com/drive/folders/15k-d8F674JCh2yfoXPGiV9fbwEgjPCsS" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">SOP Peralatan Gardu Induk</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://drive.google.com/drive/folders/1viVoO_yJkk-ZahfQojgjwti44xjDv8nM" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label"><span class="new-badge">NEW!</span>SKDIR 520 (Revisi 2024)</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </details>
   </div>
 
   <div class="page">
@@ -761,6 +792,8 @@
       <a href="https://hsse.pln.co.id/" target="_blank" rel="noopener">HSSE</a>
       <a href="https://powerinspect.pln.co.id/login" target="_blank" rel="noopener">Power Inspect</a>
       <a href="https://newsrintami.pln.co.id/site/login" target="_blank" rel="noopener">New Srintami</a>
+      <a href="https://www.google.com/maps/d/u/0/edit?mid=1CmUoRNb6iqw8wDsFhivqCqWEj4XELKg&amp;ll=-1.998753399527102%2C112.68508895000001&amp;z=8" target="_blank" rel="noopener">MAPS SUTT &amp; GI</a>
+      <a href="http://10.1.18.241/~foiseam/system.php?fnp=1&amp;setdate=2026-09-25&amp;sys=User&amp;subsys=login" target="_blank" rel="noopener">FOIS</a>
     </nav>
 
     <footer>UPT Palangkaraya &middot; Satu Komitmen, Sistem Andal</footer>
