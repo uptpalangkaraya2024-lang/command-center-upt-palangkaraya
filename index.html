@@ -197,6 +197,21 @@
   .theme-toggle:hover { color: var(--text); border-color: color-mix(in srgb, var(--navy) 45%, var(--line)); }
   .theme-toggle svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.8; }
 
+  /* --- top-left corner row: mirrors the theme toggle's top-right corner
+     placement. Holds the Perencanaan & Evaluasi dropdown first; any future
+     quick-access item is meant to be added as a sibling here so it lines
+     up to the right of it, all pinned above the fold — never requires
+     scrolling to reach, unlike the old bottom-of-page placement. */
+  .corner-left {
+    position: fixed;
+    top: 16px;
+    left: 20px;
+    z-index: 5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   /* --- telemetry strip --- */
   .telemetry {
     display: flex;
@@ -476,15 +491,13 @@
     margin: 0 auto;
   }
 
-  /* --- secondary "quick links" section: documents/spreadsheets, tucked
-     behind a collapsed <details> disclosure so the page doesn't read as
-     crowded as the 8 platform tiles above — opens on demand instead of
-     always taking up a full row. --- */
+  /* --- "quick links" dropdown: documents/spreadsheets, tucked behind a
+     collapsed <details> disclosure so it stays a compact corner control
+     rather than a full section — lives inside .corner-left (top-left,
+     pinned), opening downward without shifting any sibling added next to
+     it since each corner item sizes independently in the flex row. --- */
   .quicklinks {
-    margin-top: 36px;
-    max-width: 420px;
-    margin-left: auto;
-    margin-right: auto;
+    width: min(90vw, 300px);
   }
   .quicklinks summary {
     display: flex;
@@ -600,6 +613,37 @@
     <span id="themeLabel">Terang</span>
   </button>
 
+  <div class="corner-left">
+    <details class="quicklinks">
+      <summary>
+        Perencanaan &amp; Evaluasi
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="quicklinks-list">
+        <a class="quicklink" href="https://drive.google.com/drive/folders/1iKHez4wsKZ9RGW6VmGeUh-wZMpMWRaON" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">Link PPT Gangguan UIP3B Kal</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1X-Zw5fqcUOxrLQXA8M09hVjCNr6jSE5ZOS1jj0Uo1oc/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Link Pengisian Data Gangguan TKS</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1UGTFchl2aT6i5aVZiGBiIiTqUwIKj8gPQ208DDlfJNk/edit" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Database Aset General UPT Palangkaraya</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1cs5fQftY8AfQspxZEsNtakIjKT_jh9uUvm5ACkBJGvM/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Database Aset MTU UPT Palangkaraya</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </details>
+  </div>
+
   <div class="page">
     <div class="telemetry boot boot-1">
       <span class="live"><b>Sistem Aktif</b></span>
@@ -710,35 +754,6 @@
         <span class="tile-open"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
-
-    <details class="quicklinks">
-      <summary>
-        Perencanaan &amp; Evaluasi
-        <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="quicklinks-list">
-        <a class="quicklink" href="https://drive.google.com/drive/folders/1iKHez4wsKZ9RGW6VmGeUh-wZMpMWRaON" target="_blank" rel="noopener">
-          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
-          <span class="label">Link PPT Gangguan UIP3B Kal</span>
-          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1X-Zw5fqcUOxrLQXA8M09hVjCNr6jSE5ZOS1jj0Uo1oc/edit?gid=0#gid=0" target="_blank" rel="noopener">
-          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
-          <span class="label">Link Pengisian Data Gangguan TKS</span>
-          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1UGTFchl2aT6i5aVZiGBiIiTqUwIKj8gPQ208DDlfJNk/edit" target="_blank" rel="noopener">
-          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
-          <span class="label">Database Aset General UPT Palangkaraya</span>
-          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1cs5fQftY8AfQspxZEsNtakIjKT_jh9uUvm5ACkBJGvM/edit?gid=0#gid=0" target="_blank" rel="noopener">
-          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
-          <span class="label">Database Aset MTU UPT Palangkaraya</span>
-          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-      </div>
-    </details>
 
     <nav class="corporate-links" aria-label="Sistem korporat PLN">
       <a href="https://webmail.pln.co.id/" target="_blank" rel="noopener">Web Mail</a>
