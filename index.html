@@ -885,6 +885,29 @@
       });
       prefersDark.addEventListener("change", render);
     })();
+
+    // Corner dropdowns (Perencanaan & Evaluasi and its neighbors): native
+    // <details> only closes again on a second click of its own summary —
+    // add the two behaviors people actually expect from a menu: clicking
+    // anywhere outside the open menu closes it, and opening one closes
+    // any other that was already open (so at most one is ever open).
+    (function () {
+      const menus = document.querySelectorAll(".corner-left .quicklinks");
+      menus.forEach(function (menu) {
+        menu.addEventListener("toggle", function () {
+          if (menu.open) {
+            menus.forEach(function (other) {
+              if (other !== menu) other.open = false;
+            });
+          }
+        });
+      });
+      document.addEventListener("click", function (e) {
+        menus.forEach(function (menu) {
+          if (menu.open && !menu.contains(e.target)) menu.open = false;
+        });
+      });
+    })();
   </script>
 </body>
 </html>
