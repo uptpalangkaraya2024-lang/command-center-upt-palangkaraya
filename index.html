@@ -556,6 +556,13 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 10px;
+    /* A short list (Perencanaan & Evaluasi's 4 items) never reaches this;
+       a long one (Konstruksi & Penyaluran's growing breakdown) scrolls
+       inside its own panel instead of stretching the page's whole height
+       every time it's opened. */
+    max-height: min(65vh, 460px);
+    overflow-y: auto;
+    padding-right: 2px;
   }
   .quicklink {
     display: flex;
@@ -693,10 +700,86 @@
         <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <div class="quicklinks-list">
-        <div class="quicklink-placeholder">
-          <span class="quicklink-icon muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-          <span class="label">Breakdown menyusul</span>
-        </div>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/18zLrqIJta_krtirfRpB9MmBeYuW4WiSq/edit?gid=1932028991#gid=1932028991" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">SLO GI</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/13PrfjS4t4zVbfk9zt_iKojsiU1p0o2-6Yvh1XnICEVc/edit?gid=2050431828#gid=2050431828" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">ABO GI 2026</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1yDd-dMTkfSorzAmvPB3QAReNm-7Y3DUbeh_do9UgbO0/edit?gid=224203843#gid=224203843" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Realtime IL1, Monitoring Hardik</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1yDd-dMTkfSorzAmvPB3QAReNm-7Y3DUbeh_do9UgbO0/edit?gid=1932028991#gid=1932028991" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Checklist Hardik</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://drive.google.com/drive/folders/1xKdfMYPOg0pgxxaI7uLPzIFlNgCeZE8r" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">Thermovisi Gardu Induk</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/17WMngB9Wb9PHcL3CUBuhZSZwoJGBbTg7e-4SAqJh34Y/edit?gid=1929664571#gid=1929664571" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Partial Discharge</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://drive.google.com/drive/folders/19OMATXNEu0r5_S6OdA2VHbYA33pS9CQY" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <span class="label">Laporan Teknik Bulanan</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1YDk7ctkRdURnDmtnNk5qAVKZFyq6ST5N/edit?gid=350333835#gid=350333835" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Link Fashar Induk</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1cPxDIMKAClojUoZZelG_LZlP4ntRa_8QxjsjuxNK14M/edit?gid=1360249891#gid=1360249891" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Fashar ULTG</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1cPxDIMKAClojUoZZelG_LZlP4ntRa_8QxjsjuxNK14M/edit?gid=1360249891#gid=1360249891" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Fashar GI</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1MnXnNqYGnaN_3zh9j-20q1P4QPYAGuo3C0lp4L5bOuQ/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Update Matlev GI</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1ceUV4oTYciCIzWZnSYrAstw35b-n36xNLY3HuECoDv0/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Monitoring Matlev GI</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1k_2oDJUBx3B-Bt2599oqaU50wGijoN7ZxaMnlBKqaqs/edit?gid=0#gid=0" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Monitoring Peminjaman Alat Uji</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/1ZjeHujMrCmF6DB70lCy_Wf3jeIu4Lekc0pa8Bdp6WCs/edit?gid=746069222#gid=746069222" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Monitoring ABO Internal</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/forms/d/e/1FAIpQLScZ1BQtfj1zpt6Bu_KjBfTNNqCNilu9WXu2kGJ9OtOU63lGKw/viewform" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 11h6M9 15h6"/></svg></span>
+          <span class="label">Link Pengisian Status BBM Genset</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/15iOuNDPPWQ_TvqB2knmx3LF9BmFX3ftl4LGLrB0mi9o/edit?gid=923791962#gid=923791962" target="_blank" rel="noopener">
+          <span class="quicklink-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="label">Monitoring BBM Genset Gardu Induk</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
       </div>
     </details>
 
