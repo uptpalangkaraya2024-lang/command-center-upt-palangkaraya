@@ -224,7 +224,18 @@
     font-size: 11px;
     letter-spacing: 0.06em;
     color: var(--muted);
+    /* Clears below the fixed top-left/top-right corner pills (48px is the
+       tallest single-row corner pill's own bottom edge) so the centered
+       telemetry text never sits underneath them, however many corner
+       items end up sharing that row. */
+    margin-top: 48px;
     margin-bottom: 18px;
+  }
+  /* Below ~1000px the two current corner-left pills no longer fit on one
+     row (see .corner-left's own width math) and wrap to a second line,
+     so the telemetry text needs extra clearance to stay clear of both. */
+  @media (max-width: 1000px) {
+    .telemetry { margin-top: 96px; }
   }
   .telemetry span { white-space: nowrap; }
   .telemetry b { color: var(--text); font-weight: 500; }
