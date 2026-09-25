@@ -231,11 +231,16 @@
     margin-top: 48px;
     margin-bottom: 18px;
   }
-  /* Below ~1000px the two current corner-left pills no longer fit on one
-     row (see .corner-left's own width math) and wrap to a second line,
-     so the telemetry text needs extra clearance to stay clear of both. */
+  /* Below ~1000px the corner-left pills no longer all fit on one row (see
+     .corner-left's own width math) and wrap to a second line; below
+     ~620px each pill is nearly full-viewport width, so with 3 of them
+     that's a third row — the telemetry text needs matching extra
+     clearance at each step so it always renders below every pill. */
   @media (max-width: 1000px) {
     .telemetry { margin-top: 96px; }
+  }
+  @media (max-width: 620px) {
+    .telemetry { margin-top: 144px; }
   }
   .telemetry span { white-space: nowrap; }
   .telemetry b { color: var(--text); font-weight: 500; }
@@ -585,6 +590,27 @@
   }
   .quicklink svg.arrow { width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; flex: none; }
 
+  /* A quicklinks-list row for a menu whose real links aren't ready yet
+     (e.g. Konstruksi & Penyaluran's breakdown, to follow later) — same
+     shape as .quicklink but a dashed border, muted icon, and no arrow
+     since it isn't a link. */
+  .quicklink-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--muted);
+    background: var(--panel-soft);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    font-size: 13px;
+    font-style: italic;
+  }
+  .quicklink-icon.muted {
+    color: var(--muted);
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+  }
+
   .corporate-links {
     display: flex;
     flex-wrap: wrap;
@@ -682,6 +708,19 @@
           <span class="label"><span class="new-badge">NEW!</span>SKDIR 520 (Revisi 2024)</span>
           <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
+      </div>
+    </details>
+
+    <details class="quicklinks">
+      <summary>
+        Konstruksi &amp; Penyaluran
+        <svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="quicklinks-list">
+        <div class="quicklink-placeholder">
+          <span class="quicklink-icon muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span class="label">Breakdown menyusul</span>
+        </div>
       </div>
     </details>
   </div>
